@@ -30,8 +30,9 @@ class Grain:
 
 gf = Grain.field(shape=(n, ))
 
-grid_n = 128
+grid_n = 5
 grid_size = 1.0 / grid_n  # Simulation domain of size [0, 1]
+grid_size_128 = 1. / 128 # for spreading grains
 print(f"Grid size: {grid_n}x{grid_n}")
 
 grain_r_min = 0.002
@@ -44,11 +45,11 @@ assert grain_r_max * 2 < grid_size
 def init():
     for i in gf:
         # Spread grains in a restricted area.
-        l = i * grid_size
+        l = i * grid_size_128
         padding = 0.1
         region_width = 1.0 - padding * 2
-        pos = vec(l % region_width + padding + grid_size * ti.random() * 0.2,
-                  l // region_width * grid_size + 0.3)
+        pos = vec(l % region_width + padding + grid_size_128 * ti.random() * 0.2,
+                  l // region_width * grid_size_128 + 0.3)
         gf[i].p = pos
         gf[i].r = ti.random() * (grain_r_max - grain_r_min) + grain_r_min
         gf[i].m = density * math.pi * gf[i].r**2
@@ -196,7 +197,8 @@ step = 0
 if SAVE_FRAMES:
     os.makedirs('output', exist_ok=True)
 
-while gui.running:
+# while gui.running:
+for _ in range(200):
     for s in range(substeps):
         update()
         apply_bc()
