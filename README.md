@@ -1,5 +1,4 @@
-# Taichi DEM
-A discrete element method (DEM) simulation demo written in Taichi.
+__A discrete element method (DEM) simulation demo (with large particles) written in Taichi.__
 
 ![](./large_radius.gif)
 

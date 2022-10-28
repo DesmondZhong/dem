@@ -60,8 +60,6 @@ def init():
         gap = (1. - nl * 2 * large_grain_r) / (nl + 1)
         x0 = gap + large_grain_r
         dist_x = gap + 2 * large_grain_r
-        # print(x0)
-        # print(dist_x)
         pos = vec(
             x0 + (i- ns) * dist_x,
             0.9
