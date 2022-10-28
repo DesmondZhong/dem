@@ -90,6 +90,6 @@ I wonder why `grid_n=64` performs better than `grid_n=128` so I did a test on gr
 
 | grid_n | 5 | 32 | 64 | 128 |
 | --- | --- | --- | --- | --- |
-| wall clock time (on gpu) | 34.25 | 23.61 | **21.28** | 21.69 |
+| wall clock time (on gpu) | 34.25s | 23.61s | **21.28s** | 21.69s |
 
 I guess even if the number of collision pairs need to be processed in `grid_n=64` is larger than those in `grid_n=128`, it takes less time to populate `particle_id`, `list_head` and `list_tail`. The take-away is that the grid_n is not the larger the better. 
